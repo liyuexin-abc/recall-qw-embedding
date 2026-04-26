@@ -1,0 +1,3016 @@
+{
+  "database_meta": {
+    "available_metrics": [
+      {
+        "metric_name": "峰谷差_地调",
+        "metric_code": "peak_valley_diff_local",
+        "description": "地调（地区调度）口径下日内最高负荷与最低负荷之差（MW），反映地区电网负荷波动幅度。区别于 peak_valley_diff_unified（统调口径，省级）和 peak_valley_diff_central（中调口径）。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "local"
+      },
+      {
+        "metric_name": "负荷率_地调",
+        "metric_code": "load_rate_local",
+        "description": "地调口径负荷率，等于地调平均负荷 / 地调最高负荷，反映地调负荷曲线平坦程度。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "local"
+      },
+      {
+        "metric_name": "负荷率_统调",
+        "metric_code": "load_rate_unified",
+        "description": "统调口径负荷率，等于统调平均负荷 / 统调最高负荷，反映省级统调负荷平稳程度。与 power_grid_section 表的 load_rate（断面负载率）不是同一概念。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "峰谷差_中调",
+        "metric_code": "peak_valley_diff_central",
+        "description": "中调（中级调度，省调中心调度）口径下日内最高负荷与最低负荷之差（MW），反映中调直调机组所对应的负荷波动。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "central"
+      },
+      {
+        "metric_name": "负荷率_中调",
+        "metric_code": "load_factor_central",
+        "description": "中调口径负荷率，等于中调平均负荷 / 中调最高负荷。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "central"
+      },
+      {
+        "metric_name": "水电_统调发电",
+        "metric_code": "hydro_td_gen",
+        "description": "统调口径下水电发电量，即纳入南方电网统一调度的水电机组当日发电量。区别于 hydro_zd_gen（中调口径，省调中心直调机组）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "燃煤火电_统调发电",
+        "metric_code": "coal_thermal_td_gen",
+        "description": "统调口径下燃煤火电发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "其他火电_统调发电",
+        "metric_code": "other_thermal_td_gen",
+        "description": "统调口径下其他火电发电量（含燃气、燃油等非燃煤火电）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "火电合计_统调发电",
+        "metric_code": "thermal_total_td_gen",
+        "description": "统调口径下火电发电量合计 = 燃煤火电 + 其他火电（统调口径）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "核电_统调发电",
+        "metric_code": "nuclear_td_gen",
+        "description": "统调口径下核电发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "蓄能_统调发电",
+        "metric_code": "pumped_storage_td_gen",
+        "description": "统调口径下抽水蓄能机组发电量（蓄能放电量）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "总计_统调发电",
+        "metric_code": "total_td_gen",
+        "description": "统调口径下各类电源发电量合计 = 水电+火电+核电+风电+太阳能+生物质+蓄能。所属表 new_power_gen_rec（按地区聚合）；同名字段在 new_energy_info_fill 表中含义不同（按 gen_type 分组的合计）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调发受电量",
+        "metric_code": "td_send_receive",
+        "description": "统调口径下发受电量合计 = 统调发电量 + 统调受电量，反映该地区在统调范围内的总电力供给。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "还原电量",
+        "metric_code": "restore_energy",
+        "description": "还原电量，指将分布式电源等未直接计量部分还原计入的电量增量值（不是合计），用于把统调电量口径修正到接近全社会用电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "水电_中调发电",
+        "metric_code": "hydro_zd_gen",
+        "description": "中调口径下水电发电量，即省调中心直调水电机组当日发电量，是统调水电的子集。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "燃煤火电_中调发电",
+        "metric_code": "coal_thermal_zd_gen",
+        "description": "中调口径下燃煤火电发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "其他火电_中调发电",
+        "metric_code": "other_thermal_zd_gen",
+        "description": "中调口径下其他火电发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "火电合计_中调发电",
+        "metric_code": "thermal_total_zd_gen",
+        "description": "中调口径下火电发电量合计。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "核电_中调发电",
+        "metric_code": "nuclear_zd_gen",
+        "description": "中调口径下核电发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "风力发电_中调发电",
+        "metric_code": "wind_zd_gen",
+        "description": "中调口径下风力发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "蓄能_中调发电",
+        "metric_code": "pumped_storage_zd_gen",
+        "description": "中调口径下抽水蓄能发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "总计_中调发电",
+        "metric_code": "total_zd_gen",
+        "description": "中调口径下各类电源发电量合计。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调受电量_中调",
+        "metric_code": "td_receive_zd",
+        "description": "中调口径下受电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调发受电量_中调",
+        "metric_code": "td_send_receive_zd",
+        "description": "中调口径下发受电量合计。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调火电上网电量",
+        "metric_code": "td_thermal_grid",
+        "description": "统调火电上网电量，统调火电机组接入电网的实际上网电量（扣除厂用电）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调水电上网电量",
+        "metric_code": "td_hydro_grid",
+        "description": "统调水电上网电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调核电上网电量",
+        "metric_code": "td_nuclear_grid",
+        "description": "统调核电上网电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调风力发电上网电量",
+        "metric_code": "td_wind_grid",
+        "description": "统调风力发电上网电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "其他",
+        "metric_code": "other",
+        "description": "new_power_gen_rec 表中“其他”统调电源发电量字段（与 other_td_gen 含义重叠，建议下线归并）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "其他_中调",
+        "metric_code": "other_zd",
+        "description": "中调口径下其他类型电源发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "太阳能_统调发电",
+        "metric_code": "solar_td_gen",
+        "description": "统调口径下太阳能（光伏）发电量，仅含集中式光伏，不含分布式光伏。区别于 solar_inc_dist_td_gen（含分布式）和 td_centralized_pv（同义但口径单列）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "其他_统调发电",
+        "metric_code": "other_td_gen",
+        "description": "统调口径下其他类型电源发电量（不属于水电、火电、核电、风电、太阳能、生物质、蓄能的小众电源）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "太阳能_中调发电",
+        "metric_code": "solar_zd_gen",
+        "description": "中调口径下太阳能发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "生物质_统调发电",
+        "metric_code": "biomass_td_gen",
+        "description": "统调口径下生物质发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调还原后发受电量",
+        "metric_code": "td_restore_send_receive",
+        "description": "统调还原后发受电量，即把未直接计量的分布式电源等还原计入后的发受电量，最贴近真实负荷电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调集中式光伏",
+        "metric_code": "td_centralized_pv",
+        "description": "统调集中式光伏发电量，与 solar_td_gen 同口径，专门拆分用于“集中式 vs 分布式”对比分析。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调分布式光伏",
+        "metric_code": "td_distributed_pv",
+        "description": "统调分布式光伏发电量，纳入统调还原后口径的分布式光伏发电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "太阳能含分布式光伏_统调发电",
+        "metric_code": "solar_inc_dist_td_gen",
+        "description": "统调口径含分布式光伏的太阳能发电量 = 集中式光伏 + 分布式光伏。是 solar_td_gen 的扩展口径。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "总计含分布式光伏_统调发电",
+        "metric_code": "total_inc_dist_td_gen",
+        "description": "统调含分布式光伏口径下电源发电量合计 = total_td_gen + 分布式光伏。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调发受电量含分布式光伏",
+        "metric_code": "td_send_receive_inc_dist",
+        "description": "统调含分布式光伏口径下发受电量合计。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "地方发电量_中调",
+        "metric_code": "local_gen_zd",
+        "description": "中调口径下地方电厂发电量（非中调直调，由地方调度但纳入中调统计）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "全电量_中调",
+        "metric_code": "total_energy_zd",
+        "description": "中调口径下全电量 = 中调直调发电量 + 地方发电量 + 中调受电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调上网电量",
+        "metric_code": "td_grid_energy",
+        "description": "统调上网电量总计，所有统调电源上网电量之和。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调受电量",
+        "metric_code": "td_receive_energy",
+        "description": "统调受电量，即从其他省/区域受入的电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "统调发电量",
+        "metric_code": "td_gen_energy",
+        "description": "统调发电量，本地区统调电源发电量合计。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "风力发电_统调发电",
+        "metric_code": "wind_td_gen",
+        "description": "统调口径下风力发电量（不含分布式风电）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "非化石能源发电量",
+        "metric_code": "non_fossil_gen",
+        "description": "非化石能源发电量 = 水电 + 核电 + 风电 + 太阳能 + 生物质，用于衡量清洁能源占比与能源结构转型水平。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "新能源发电量",
+        "metric_code": "new_energy_gen",
+        "description": "新能源发电量，根据业务定义，仅包含：风能、集中式光伏、统调光伏、总分布式光伏、总光伏、生物质（不含水电、核电）。区别于 non_fossil_gen（非化石能源，含水电核电）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "新能源最大渗透率(%)",
+        "metric_code": "max_penetration_rate",
+        "description": "新能源最大渗透率(%)，统计周期内新能源出力占同时刻总负荷的最大比例，反映新能源接入电网的瞬时最高占比。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "新能源最大出力(MW)",
+        "metric_code": "max_active_power",
+        "description": "新能源最大出力(MW)，统计周期内新能源（按电站或类型口径）出力的最大瞬时值。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "新能源控制最大电力(MW)",
+        "metric_code": "controlled_max_power",
+        "description": "新能源控制最大电力(MW)，因调度需要而被限制的最大新能源出力（弃风/弃光的功率值）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "新能源控制电量(MWh)",
+        "metric_code": "controlled_energy",
+        "description": "新能源控制电量(MWh)，因调度限电导致新能源少发的累计电量，即弃风弃光电量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "数据值",
+        "metric_code": "value",
+        "description": "电厂测点的实时测量数值，具体物理含义由 point_name 决定（电压单位 kV、电流单位 A、频率单位 Hz、功率单位 MW、出力单位 MW）。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "OBJ_DISPIDX",
+        "metric_code": "obj_dispIdx",
+        "description": "OBJ_DISPIDX",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "装机容量(MW)",
+        "metric_code": "installed_capacity",
+        "description": "装机容量(MW)，新能源电站或某类电源的已并网/核准装机容量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "发电量(MWh)",
+        "metric_code": "generation",
+        "description": "发电量(MWh)",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "最大出力(MW)",
+        "metric_code": "max_power",
+        "description": "最大出力(MW)",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "最小出力(MW)",
+        "metric_code": "min_power",
+        "description": "最小出力(MW)",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "最大受限出力(MW)",
+        "metric_code": "max_limited_power",
+        "description": "最大受限出力(MW)",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "受限电量(MWh)",
+        "metric_code": "limited_energy",
+        "description": "受限电量(MWh)",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "利用小时数(h)",
+        "metric_code": "utilization_hours",
+        "description": "利用小时数(h)",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "实际出力(MW)",
+        "metric_code": "actual_power",
+        "description": "实际出力(MW)",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "计划值_最大有功功率（MW）",
+        "metric_code": "planned_max_active_power",
+        "description": "计划值_最大有功功率（MW）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "实际值_最大有功功率（MW）",
+        "metric_code": "actual_max_active_power",
+        "description": "实际值_最大有功功率（MW）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "7-23点计划电量（MWh）",
+        "metric_code": "planned_power_t723",
+        "description": "7-23点计划电量（MWh）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "23-7点计划电量（MWh）",
+        "metric_code": "planned_power_t237",
+        "description": "23-7点计划电量（MWh）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "全天计划电量（MWh）",
+        "metric_code": "planned_power_daily",
+        "description": "全天计划电量（MWh）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "7-23点实际电量（MWh）",
+        "metric_code": "actual_power_t723",
+        "description": "7-23点实际电量（MWh）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "23-7点实际电量（MWh）",
+        "metric_code": "actual_power_t237",
+        "description": "23-7点实际电量（MWh）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "全天实际电量（MWh）",
+        "metric_code": "actual_power_daily",
+        "description": "全天实际电量（MWh）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "复电用户数（可为空）",
+        "metric_code": "restored_users",
+        "description": "复电用户数（可为空）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "停电影响用户数（可为空）",
+        "metric_code": "affected_users",
+        "description": "停电影响用户数（可为空）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "损失负荷(MW)（可为空）",
+        "metric_code": "lost_load",
+        "description": "损失负荷(MW)（可为空）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "已恢复负荷(MW)（可为空）",
+        "metric_code": "restored_load",
+        "description": "已恢复负荷(MW)（可为空）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "损失电量(万kWh)（固定为空）",
+        "metric_code": "lost_power",
+        "description": "损失电量(万kWh)（固定为空）",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "平均_地调（MW）",
+        "metric_code": "avg_load_local",
+        "description": "地调口径下当日平均负荷（MW），仅统计地区调度直调部分。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "local"
+      },
+      {
+        "metric_name": "最低_地调（MW）",
+        "metric_code": "min_load_local",
+        "description": "地调口径下当日最低负荷（MW），仅统计地区调度直调部分。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "local"
+      },
+      {
+        "metric_name": "最高_地调（MW）",
+        "metric_code": "max_load_local",
+        "description": "地调口径下当日最高负荷（MW），仅统计地区调度直调部分。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "local"
+      },
+      {
+        "metric_name": "峰谷差_统调（MW）",
+        "metric_code": "peak_valley_diff_unified",
+        "description": "统调（统一调度）口径下日内最高负荷与最低负荷之差（MW），反映省级统调电网负荷波动幅度，是调峰能力评估的关键指标。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "平均_统调（MW）",
+        "metric_code": "avg_load_unified",
+        "description": "统调口径下当日平均负荷（MW），是省级电力供需平衡的核心指标。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "最低_统调（MW）",
+        "metric_code": "min_load_unified",
+        "description": "统调口径下当日最低负荷（MW），是省级电力供需平衡的核心指标。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "最高_统调（MW）",
+        "metric_code": "max_load_unified",
+        "description": "统调口径下当日最高负荷（MW），是省级电力供需平衡的核心指标。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "平均_中调（MW）",
+        "metric_code": "avg_load_central",
+        "description": "中调口径下当日平均负荷（MW），仅统计中调直调机组对应负荷。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "central"
+      },
+      {
+        "metric_name": "最低_中调（MW）",
+        "metric_code": "min_load_central",
+        "description": "中调口径下当日最低负荷（MW），仅统计中调直调机组对应负荷。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "central"
+      },
+      {
+        "metric_name": "最高_中调（MW）",
+        "metric_code": "max_load_central",
+        "description": "中调口径下当日最高负荷（MW），仅统计中调直调机组对应负荷。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "central"
+      },
+      {
+        "metric_name": "还原后最高_统调（MW）",
+        "metric_code": "restored_max_load_unified",
+        "description": "统调口径下还原后最高负荷（MW），即把分布式光伏自发自用部分还原计入后的统调最高负荷，更接近真实最大用电需求。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "含分布式光伏平均_统调（MW）",
+        "metric_code": "avg_load_unified_with_pv",
+        "description": "含分布式光伏的统调口径下日平均负荷（MW），即在统调负荷基础上加回分布式光伏自发自用电量，用于真实负荷分析。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "含分布式最低_统调（MW）",
+        "metric_code": "min_load_unified_with_pv",
+        "description": "含分布式光伏的统调口径下日最低负荷（MW），即在统调负荷基础上加回分布式光伏自发自用电量，用于真实负荷分析。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "含分布式最高_统调（MW）",
+        "metric_code": "max_load_unified_with_pv",
+        "description": "含分布式光伏的统调口径下日最高负荷（MW），即在统调负荷基础上加回分布式光伏自发自用电量，用于真实负荷分析。",
+        "unit": "",
+        "data_type": "",
+        "caliber_scope": "unified"
+      },
+      {
+        "metric_name": "计算结果",
+        "metric_code": "calculation_result",
+        "description": "断面实时计算潮流值（MW），由 SCADA/EMS 实时计算得出。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "限制值",
+        "metric_code": "limit_value",
+        "description": "断面物理限制值（MW），断面所允许的理论极限输送功率。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "控制值",
+        "metric_code": "control_value",
+        "description": "断面安全控制值（MW），运行控制层面设定的安全预警值，通常小于 limit_value。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "最小值",
+        "metric_code": "min_value",
+        "description": "断面反向输送时的最小允许值（MW），反向越限判定依据。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "负载率",
+        "metric_code": "load_rate",
+        "description": "断面负载率，等于断面实时计算结果 / 断面限制值，反映该输电断面/通道的承压程度。注意：与 load_and_reserve 表的负荷率（avg/max 负荷比）含义完全不同。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "裕度",
+        "metric_code": "margin",
+        "description": "断面安全裕度（MW）= 控制值 - 实时值，反映距离安全控制值的余量。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "越控制值",
+        "metric_code": "exceed_control",
+        "description": "断面越控制值的越限量（MW），值大于 0 表示已越限。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "越限制值",
+        "metric_code": "exceed_limit",
+        "description": "断面越极限值的越限量（MW），值大于 0 表示已越限。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "越最小值",
+        "metric_code": "exceed_min",
+        "description": "断面越最小值的越限量（MW），值大于 0 表示已越限。",
+        "unit": "",
+        "data_type": ""
+      },
+      {
+        "metric_name": "实时值（实时测量值）",
+        "metric_code": "real_time_value",
+        "description": "断面实时测量值（MW，不经过计算），来自 SCADA 直采。",
+        "unit": "",
+        "data_type": ""
+      }
+    ],
+    "available_dimensions": [
+      {
+        "dimension_name": "日期",
+        "dimension_code": "ptdate",
+        "description": "天粒度",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "月份",
+        "dimension_code": "month",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "季度",
+        "dimension_code": "quarter",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "自然周",
+        "dimension_code": "weekofyear",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "年度",
+        "dimension_code": "year",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "对象编号",
+        "dimension_code": "object_id",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "自增主键",
+        "dimension_code": "id",
+        "description": "自增主键",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "名称",
+        "dimension_code": "name",
+        "description": "名称",
+        "data_type": "",
+        "possible_values": [
+          "广东-惠州农光互补电站",
+          "广东-江门生物质电站",
+          "广东-深圳光伏电站",
+          "广东-阳江海上风电场",
+          "广东-珠海分散式风电",
+          "广西-北海海上风电",
+          "广西-桂林风电场",
+          "广西-柳州垃圾发电站",
+          "广西-南宁光伏电站",
+          "广西-玉林农光互补",
+          "贵州-安顺垃圾发电",
+          "贵州-毕节风电场",
+          "贵州-六盘水光伏",
+          "贵州-黔南农光互补",
+          "贵州-遵义风电",
+          "海南-东方农光互补",
+          "海南-琼海生物质",
+          "海南-三亚光伏电站",
+          "海南-文昌风电",
+          "海南-儋州海上风电",
+          "云南-楚雄光伏电站",
+          "云南-大理风电场",
+          "云南-昆明水面光伏",
+          "云南-丽江生物质",
+          "云南-曲靖风电"
+        ]
+      },
+      {
+        "dimension_name": "新能源控制原因",
+        "dimension_code": "control_reason",
+        "description": "新能源控制原因",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "测点名",
+        "dimension_code": "point_name",
+        "description": "测点名",
+        "data_type": "",
+        "possible_values": [
+          "白鹤滩电厂电流",
+          "白鹤滩电厂电压",
+          "白鹤滩电厂频率",
+          "白鹤滩电厂实时出力",
+          "白鹤滩电厂无功功率",
+          "白鹤滩电厂有功功率",
+          "锦屏电厂电流",
+          "锦屏电厂电压",
+          "锦屏电厂频率",
+          "锦屏电厂实时出力",
+          "锦屏电厂无功功率",
+          "锦屏电厂有功功率",
+          "龙滩电厂电流",
+          "龙滩电厂电压",
+          "龙滩电厂频率",
+          "龙滩电厂实时出力",
+          "龙滩电厂无功功率",
+          "龙滩电厂有功功率",
+          "鲁布革电厂电流",
+          "鲁布革电厂电压",
+          "鲁布革电厂频率",
+          "鲁布革电厂实时出力",
+          "鲁布革电厂无功功率",
+          "鲁布革电厂有功功率",
+          "糯扎渡电厂电流",
+          "糯扎渡电厂电压",
+          "糯扎渡电厂频率",
+          "糯扎渡电厂实时出力",
+          "糯扎渡电厂无功功率",
+          "糯扎渡电厂有功功率",
+          "天生桥电厂电流",
+          "天生桥电厂电压",
+          "天生桥电厂频率",
+          "天生桥电厂实时出力",
+          "天生桥电厂无功功率",
+          "天生桥电厂有功功率",
+          "乌东德电厂电流",
+          "乌东德电厂电压",
+          "乌东德电厂频率",
+          "乌东德电厂实时出力",
+          "乌东德电厂无功功率",
+          "乌东德电厂有功功率",
+          "乌东西岸电厂电流",
+          "乌东西岸电厂电压",
+          "乌东西岸电厂频率",
+          "乌东西岸电厂实时出力",
+          "乌东西岸电厂无功功率",
+          "乌东西岸电厂有功功率",
+          "溪洛渡电厂电流",
+          "溪洛渡电厂电压",
+          "溪洛渡电厂频率",
+          "溪洛渡电厂实时出力",
+          "溪洛渡电厂无功功率",
+          "溪洛渡电厂有功功率",
+          "小湾电厂电流",
+          "小湾电厂电压",
+          "小湾电厂频率",
+          "小湾电厂实时出力",
+          "小湾电厂无功功率",
+          "小湾电厂有功功率"
+        ]
+      },
+      {
+        "dimension_name": "地区名",
+        "dimension_code": "region_name",
+        "description": "地区名",
+        "data_type": "",
+        "possible_values": [
+          "广东",
+          "广西",
+          "贵州",
+          "海南",
+          "云南"
+        ]
+      },
+      {
+        "dimension_name": "测点ID",
+        "dimension_code": "point_id",
+        "description": "测点ID",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "发电类型",
+        "dimension_code": "gen_type",
+        "description": "新能源发电类型包括(风能/集中式光伏/统调光伏/总分布式光伏/总光伏/生物质)",
+        "data_type": "",
+        "possible_values": [
+          "风能",
+          "集中式光伏",
+          "生物质",
+          "统调光伏",
+          "总分布式光伏",
+          "总光伏"
+        ]
+      },
+      {
+        "dimension_name": "送受电方向",
+        "dimension_code": "power_flow_direction",
+        "description": "送受电方向",
+        "data_type": "",
+        "possible_values": [
+          "广东受广西",
+          "广东受贵州",
+          "广东受云南",
+          "广东送海南",
+          "广西受海南",
+          "广西受云南",
+          "广西送广东",
+          "广西送贵州",
+          "贵州受广西",
+          "贵州受云南",
+          "贵州送广东",
+          "贵州送海南",
+          "海南受广东",
+          "海南受贵州",
+          "海南送广西",
+          "海南送云南",
+          "云南送广东",
+          "云南送广西",
+          "云南送贵州",
+          "云南送海南"
+        ]
+      },
+      {
+        "dimension_name": "记录号",
+        "dimension_code": "record_no",
+        "description": "记录号",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "调管机构",
+        "dimension_code": "dispatch_org",
+        "description": "负责电力调度的机构，包括省、市地区的总调、市调及地调，如广西中调、广州地调等。",
+        "data_type": "",
+        "possible_values": [
+          "东莞地调",
+          "佛山地调",
+          "广东中调",
+          "广西中调",
+          "广州地调",
+          "贵州中调",
+          "海南中调",
+          "惠州市调",
+          "江门市调",
+          "茂名市调",
+          "南方总调",
+          "深圳地调",
+          "云南中调",
+          "湛江市调",
+          "肇庆市调",
+          "中山市调",
+          "珠海市调"
+        ]
+      },
+      {
+        "dimension_name": "市级区域",
+        "dimension_code": "city_belong",
+        "description": "地市名称",
+        "data_type": "ENUM",
+        "possible_values": [
+          "七台河市",
+          "三亚市",
+          "三明市",
+          "三沙市",
+          "三门峡市",
+          "上海市",
+          "上饶市",
+          "东莞市",
+          "东营市",
+          "中卫市",
+          "中山市",
+          "临夏回族自治州",
+          "临汾市",
+          "临沂市",
+          "临沧市",
+          "丹东市",
+          "丽水市",
+          "丽江市",
+          "乌兰察布市",
+          "乌海市",
+          "乌鲁木齐市",
+          "乐山市",
+          "九江市",
+          "云浮市",
+          "亳州市",
+          "伊犁哈萨克自治州",
+          "佛山市",
+          "佳木斯市",
+          "保定市",
+          "保山市",
+          "信阳市",
+          "儋州市",
+          "克拉玛依市",
+          "六安市",
+          "六盘水市",
+          "兰州市",
+          "兴安盟",
+          "内江市",
+          "凉山彝族自治州",
+          "包头市",
+          "北京市",
+          "北海市",
+          "十堰市",
+          "南京市",
+          "南充市",
+          "南宁市",
+          "南平市",
+          "南昌市",
+          "南通市",
+          "南阳市",
+          "博尔塔拉蒙古自治州",
+          "厦门市",
+          "双鸭山市",
+          "台州市",
+          "合肥市",
+          "吉安市",
+          "吉林市",
+          "吐鲁番市",
+          "吕梁市",
+          "吴忠市",
+          "周口市",
+          "呼伦贝尔市",
+          "呼和浩特市",
+          "和田地区",
+          "咸宁市",
+          "咸阳市",
+          "哈密市",
+          "哈尔滨市",
+          "唐山市",
+          "商丘市",
+          "商洛市",
+          "喀什地区",
+          "嘉兴市",
+          "嘉峪关市",
+          "四平市",
+          "固原市",
+          "塔城地区",
+          "大同市",
+          "大庆市",
+          "大理白族自治州",
+          "大连市",
+          "天水市",
+          "天津市",
+          "太原市",
+          "威海市",
+          "娄底市",
+          "孝感市",
+          "宁德市",
+          "宁波市",
+          "安庆市",
+          "安康市",
+          "安阳市",
+          "安顺市",
+          "定西市",
+          "宜宾市",
+          "宜昌市",
+          "宜春市",
+          "宝鸡市",
+          "宣城市",
+          "宿州市",
+          "宿迁市",
+          "山南市",
+          "岳阳市",
+          "崇左市",
+          "巴中市",
+          "巴彦淖尔市",
+          "巴音郭楞蒙古自治州",
+          "常州市",
+          "常德市",
+          "平凉市",
+          "平顶山市",
+          "广元市",
+          "广安市",
+          "广州市",
+          "庆阳市",
+          "廊坊市",
+          "延安市",
+          "延边朝鲜族自治州",
+          "开封市",
+          "张家口市",
+          "张家界市",
+          "张掖市",
+          "徐州市",
+          "德宏傣族景颇族自治州",
+          "德州市",
+          "德阳市",
+          "忻州市",
+          "怀化市",
+          "怒江傈僳族自治州",
+          "恩施土家族苗族自治州",
+          "惠州市",
+          "成都市",
+          "扬州市",
+          "承德市",
+          "抚州市",
+          "抚顺市",
+          "拉萨市",
+          "揭阳市",
+          "攀枝花市",
+          "文山壮族苗族自治州",
+          "新乡市",
+          "新余市",
+          "无锡市",
+          "日照市",
+          "昆明市",
+          "昌吉回族自治州",
+          "昌都市",
+          "昭通市",
+          "晋中市",
+          "晋城市",
+          "普洱市",
+          "景德镇市",
+          "曲靖市",
+          "朔州市",
+          "朝阳市",
+          "本溪市",
+          "来宾市",
+          "杭州市",
+          "松原市",
+          "林芝市",
+          "枣庄市",
+          "柳州市",
+          "株洲市",
+          "桂林市",
+          "梅州市",
+          "梧州市",
+          "楚雄彝族自治州",
+          "榆林市",
+          "武威市",
+          "武汉市",
+          "毕节市",
+          "永州市",
+          "汉中市",
+          "汕头市",
+          "汕尾市",
+          "江门市",
+          "池州市",
+          "沈阳市",
+          "沧州市",
+          "河池市",
+          "河源市",
+          "泉州市",
+          "泰安市",
+          "泰州市",
+          "泸州市",
+          "洛阳市",
+          "济南市",
+          "济宁市",
+          "海东市",
+          "海北藏族自治州",
+          "海南藏族自治州",
+          "海口市",
+          "海西蒙古族藏族自治州",
+          "淄博市",
+          "淮北市",
+          "淮南市",
+          "淮安市",
+          "深圳市",
+          "清远市",
+          "温州市",
+          "渭南市",
+          "湖州市",
+          "湘潭市",
+          "湘西土家族苗族自治州",
+          "湛江市",
+          "滁州市",
+          "滨州市",
+          "漯河市",
+          "漳州市",
+          "潍坊市",
+          "潮州市",
+          "濮阳市",
+          "烟台市",
+          "焦作市",
+          "牡丹江市",
+          "玉林市",
+          "玉溪市",
+          "珠海市",
+          "甘南藏族自治州",
+          "甘孜藏族自治州",
+          "白城市",
+          "白山市",
+          "白银市",
+          "百色市",
+          "益阳市",
+          "盐城市",
+          "盘锦市",
+          "眉山市",
+          "石嘴山市",
+          "石家庄市",
+          "福州市",
+          "秦皇岛市",
+          "红河哈尼族彝族自治州",
+          "绍兴市",
+          "绥化市",
+          "绵阳市",
+          "聊城市",
+          "肇庆市",
+          "自贡市",
+          "舟山市",
+          "芜湖市",
+          "苏州市",
+          "茂名市",
+          "荆州市",
+          "荆门市",
+          "莆田市",
+          "菏泽市",
+          "萍乡市",
+          "营口市",
+          "葫芦岛市",
+          "蚌埠市",
+          "衡水市",
+          "衡阳市",
+          "衢州市",
+          "襄阳市",
+          "西双版纳傣族自治州",
+          "西宁市",
+          "西安市",
+          "许昌市",
+          "贵港市",
+          "贵阳市",
+          "贺州市",
+          "资阳市",
+          "赣州市",
+          "赤峰市",
+          "辽源市",
+          "辽阳市",
+          "达州市",
+          "运城市",
+          "连云港市",
+          "迪庆藏族自治州",
+          "通化市",
+          "通辽市",
+          "遂宁市",
+          "遵义市",
+          "邢台市",
+          "邯郸市",
+          "邵阳市",
+          "郑州市",
+          "郴州市",
+          "鄂尔多斯市",
+          "鄂州市",
+          "酒泉市",
+          "重庆市",
+          "金华市",
+          "金昌市",
+          "钦州市",
+          "铁岭市",
+          "铜仁市",
+          "铜川市",
+          "铜陵市",
+          "银川市",
+          "锡林郭勒盟",
+          "锦州市",
+          "镇江市",
+          "长春市",
+          "长沙市",
+          "长治市",
+          "阜新市",
+          "阜阳市",
+          "防城港市",
+          "阳江市",
+          "阳泉市",
+          "阿克苏地区",
+          "阿勒泰地区",
+          "阿坝藏族羌族自治州",
+          "阿拉善盟",
+          "阿里地区",
+          "陇南市",
+          "随州市",
+          "雅安市",
+          "青岛市",
+          "鞍山市",
+          "韶关市",
+          "马鞍山市",
+          "驻马店市",
+          "鸡西市",
+          "鹤壁市",
+          "鹤岗市",
+          "鹰潭市",
+          "黄冈市",
+          "黄山市",
+          "黄石市",
+          "黑河市",
+          "黔东南苗族侗族自治州",
+          "黔南布依族苗族自治州",
+          "黔西南布依族苗族自治州",
+          "齐齐哈尔市",
+          "龙岩市"
+        ]
+      },
+      {
+        "dimension_name": "变电站",
+        "dimension_code": "substation",
+        "description": "变电站",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "停电类型",
+        "dimension_code": "power_outage_type",
+        "description": "停电类型",
+        "data_type": "",
+        "possible_values": [
+          "失压",
+          "跳闸",
+          "跳闸重合成功",
+          "主动停运-覆冰",
+          "主动停运-内涝",
+          "主动停运-其它",
+          "主动停运-山火",
+          "主动停运-设备缺陷"
+        ]
+      },
+      {
+        "dimension_name": "故障所属维护单位",
+        "dimension_code": "fault_maintain_unit",
+        "description": "发生故障的单位名称，包含变电所、供电局、检修实验中心、输电管理所、配电运维中中心等",
+        "data_type": "",
+        "possible_values": [
+          "变电管理二所",
+          "变电管理一所",
+          "电缆运维中心",
+          "东莞供电局",
+          "佛山供电局",
+          "各区供电局",
+          "广州供电局",
+          "检修试验中心",
+          "配电运维中心",
+          "深圳供电局",
+          "输电管理二所",
+          "输电管理一所"
+        ]
+      },
+      {
+        "dimension_name": "线路编码",
+        "dimension_code": "line_code",
+        "description": "线路编码",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "线路名称",
+        "dimension_code": "line_name",
+        "description": "线路名称",
+        "data_type": "",
+        "possible_values": [
+          "爱国103线",
+          "爱国111线",
+          "博惠680线",
+          "博惠685线",
+          "惠福995线",
+          "惠福997线",
+          "同心107线",
+          "同心131线",
+          "现振996线",
+          "砚罗996线",
+          "鲲鹏999线"
+        ]
+      },
+      {
+        "dimension_name": "故障相别",
+        "dimension_code": "fault_phase",
+        "description": "故障相别",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "故障类型",
+        "dimension_code": "fault_type",
+        "description": "故障类型",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "重合闸动作情况",
+        "dimension_code": "recloser_action",
+        "description": "重合闸动作情况",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "所属县区",
+        "dimension_code": "county_district",
+        "description": "所属县区",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "停电原因",
+        "dimension_code": "outage_reason",
+        "description": "停电原因",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "送电情况",
+        "dimension_code": "power_delivery_status",
+        "description": "送电情况(1:重合闸动作成功 2:未恢复 3:送电成功 4:强送成功 5:试送成功 6:正常恢复)",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "用电恢复情况",
+        "dimension_code": "power_restore_status",
+        "description": "用电恢复情况（固定为空）",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "记录人（可为空）",
+        "dimension_code": "recorder",
+        "description": "记录人（可为空）",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "记录时间",
+        "dimension_code": "record_time",
+        "description": "记录时间（可为空）",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "对象时标",
+        "dimension_code": "object_timestamp",
+        "description": "对象时标",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "断面名",
+        "dimension_code": "section_name",
+        "description": "断面名",
+        "data_type": "",
+        "possible_values": [
+          "楚穗直流",
+          "滇黔联络线",
+          "滇西北送电通道",
+          "高肇直流",
+          "广东-澳门联络线",
+          "广东-香港联络线",
+          "广东东部断面",
+          "广东西部断面",
+          "广西南部断面",
+          "桂电送粤通道",
+          "贵州外送断面",
+          "海南联网断面",
+          "金中直流",
+          "鲁西背靠背",
+          "牛从直流",
+          "普侨直流",
+          "黔电送粤通道",
+          "天广直流",
+          "西电东送北通道",
+          "西电东送南通道",
+          "西电东送中通道",
+          "兴安直流",
+          "永富直流",
+          "粤港澳大湾区环网断面",
+          "粤桂联络线",
+          "云贵互联通道",
+          "云南外送断面"
+        ]
+      },
+      {
+        "dimension_name": "越限状态",
+        "dimension_code": "limit_status",
+        "description": "越限状态",
+        "data_type": "",
+        "possible_values": [
+          "越反向极限值",
+          "越反向控制值",
+          "越极限值",
+          "越控制值",
+          "正常"
+        ]
+      },
+      {
+        "dimension_name": "所属母线",
+        "dimension_code": "busbar",
+        "description": "所属母线",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "最低时间_地调",
+        "dimension_code": "min_time_local",
+        "description": "最低时间_地调",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "最高时间_地调",
+        "dimension_code": "max_time_local",
+        "description": "最高时间_地调",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "最低时间_统调",
+        "dimension_code": "min_time_unified",
+        "description": "最低时间_统调",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "最高时间_统调",
+        "dimension_code": "max_time_unified",
+        "description": "最高时间_统调",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "最低时间_中调",
+        "dimension_code": "min_time_central",
+        "description": "最低时间_中调",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "最高时间_中调",
+        "dimension_code": "max_time_central",
+        "description": "最高时间_中调",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "电压等级",
+        "dimension_code": "voltage_level",
+        "description": "电压等级",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "停电时间",
+        "dimension_code": "outage_time",
+        "description": "停电时间",
+        "data_type": "",
+        "possible_values": []
+      },
+      {
+        "dimension_name": "复电时间",
+        "dimension_code": "restore_time",
+        "description": "复电时间",
+        "data_type": "",
+        "possible_values": []
+      }
+    ],
+    "table_summaries": [
+      {
+        "table_name": "new_power_gen_rec",
+        "description": "发受电量",
+        "columns": [
+          {
+            "column_name": "ptdate",
+            "data_type": "DATE",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          },
+          {
+            "column_name": "region_name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "地区名"
+          },
+          {
+            "column_name": "hydro_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下水电发电量，即纳入南方电网统一调度的水电机组当日发电量。区别于 hydro_zd_gen（中调口径，省调中心直调机组）。"
+          },
+          {
+            "column_name": "coal_thermal_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下燃煤火电发电量。"
+          },
+          {
+            "column_name": "other_thermal_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下其他火电发电量（含燃气、燃油等非燃煤火电）。"
+          },
+          {
+            "column_name": "thermal_total_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下火电发电量合计 = 燃煤火电 + 其他火电（统调口径）。"
+          },
+          {
+            "column_name": "nuclear_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下核电发电量。"
+          },
+          {
+            "column_name": "pumped_storage_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下抽水蓄能机组发电量（蓄能放电量）。"
+          },
+          {
+            "column_name": "total_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下各类电源发电量合计 = 水电+火电+核电+风电+太阳能+生物质+蓄能。所属表 new_power_gen_rec（按地区聚合）；同名字段在 new_energy_info_fill 表中含义不同（按 gen_type 分组的合计）。"
+          },
+          {
+            "column_name": "td_send_receive",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下发受电量合计 = 统调发电量 + 统调受电量，反映该地区在统调范围内的总电力供给。"
+          },
+          {
+            "column_name": "restore_energy",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "还原电量，指将分布式电源等未直接计量部分还原计入的电量增量值（不是合计），用于把统调电量口径修正到接近全社会用电量。"
+          },
+          {
+            "column_name": "hydro_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下水电发电量，即省调中心直调水电机组当日发电量，是统调水电的子集。"
+          },
+          {
+            "column_name": "coal_thermal_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下燃煤火电发电量。"
+          },
+          {
+            "column_name": "other_thermal_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下其他火电发电量。"
+          },
+          {
+            "column_name": "thermal_total_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下火电发电量合计。"
+          },
+          {
+            "column_name": "nuclear_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下核电发电量。"
+          },
+          {
+            "column_name": "wind_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下风力发电量。"
+          },
+          {
+            "column_name": "pumped_storage_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下抽水蓄能发电量。"
+          },
+          {
+            "column_name": "total_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下各类电源发电量合计。"
+          },
+          {
+            "column_name": "td_receive_zd",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下受电量。"
+          },
+          {
+            "column_name": "td_send_receive_zd",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下发受电量合计。"
+          },
+          {
+            "column_name": "td_thermal_grid",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调火电上网电量，统调火电机组接入电网的实际上网电量（扣除厂用电）。"
+          },
+          {
+            "column_name": "td_hydro_grid",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调水电上网电量。"
+          },
+          {
+            "column_name": "td_nuclear_grid",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调核电上网电量。"
+          },
+          {
+            "column_name": "td_wind_grid",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调风力发电上网电量。"
+          },
+          {
+            "column_name": "other",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "new_power_gen_rec 表中“其他”统调电源发电量字段（与 other_td_gen 含义重叠，建议下线归并）。"
+          },
+          {
+            "column_name": "other_zd",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下其他类型电源发电量。"
+          },
+          {
+            "column_name": "solar_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下太阳能（光伏）发电量，仅含集中式光伏，不含分布式光伏。区别于 solar_inc_dist_td_gen（含分布式）和 td_centralized_pv（同义但口径单列）。"
+          },
+          {
+            "column_name": "other_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下其他类型电源发电量（不属于水电、火电、核电、风电、太阳能、生物质、蓄能的小众电源）。"
+          },
+          {
+            "column_name": "solar_zd_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下太阳能发电量。"
+          },
+          {
+            "column_name": "biomass_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下生物质发电量。"
+          },
+          {
+            "column_name": "td_restore_send_receive",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调还原后发受电量，即把未直接计量的分布式电源等还原计入后的发受电量，最贴近真实负荷电量。"
+          },
+          {
+            "column_name": "td_centralized_pv",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调集中式光伏发电量，与 solar_td_gen 同口径，专门拆分用于“集中式 vs 分布式”对比分析。"
+          },
+          {
+            "column_name": "td_distributed_pv",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调分布式光伏发电量，纳入统调还原后口径的分布式光伏发电量。"
+          },
+          {
+            "column_name": "solar_inc_dist_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径含分布式光伏的太阳能发电量 = 集中式光伏 + 分布式光伏。是 solar_td_gen 的扩展口径。"
+          },
+          {
+            "column_name": "total_inc_dist_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调含分布式光伏口径下电源发电量合计 = total_td_gen + 分布式光伏。"
+          },
+          {
+            "column_name": "td_send_receive_inc_dist",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调含分布式光伏口径下发受电量合计。"
+          },
+          {
+            "column_name": "local_gen_zd",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下地方电厂发电量（非中调直调，由地方调度但纳入中调统计）。"
+          },
+          {
+            "column_name": "total_energy_zd",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下全电量 = 中调直调发电量 + 地方发电量 + 中调受电量。"
+          },
+          {
+            "column_name": "td_grid_energy",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调上网电量总计，所有统调电源上网电量之和。"
+          },
+          {
+            "column_name": "td_receive_energy",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调受电量，即从其他省/区域受入的电量。"
+          },
+          {
+            "column_name": "td_gen_energy",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调发电量，本地区统调电源发电量合计。"
+          },
+          {
+            "column_name": "wind_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下风力发电量（不含分布式风电）。"
+          },
+          {
+            "column_name": "non_fossil_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "非化石能源发电量 = 水电 + 核电 + 风电 + 太阳能 + 生物质，用于衡量清洁能源占比与能源结构转型水平。"
+          },
+          {
+            "column_name": "new_energy_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "新能源发电量，根据业务定义，仅包含：风能、集中式光伏、统调光伏、总分布式光伏、总光伏、生物质（不含水电、核电）。区别于 non_fossil_gen（非化石能源，含水电核电）。"
+          }
+        ]
+      },
+      {
+        "table_name": "new_energy_daily_status",
+        "description": "新能源运行情况",
+        "columns": [
+          {
+            "column_name": "id",
+            "data_type": "INT",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自增主键"
+          },
+          {
+            "column_name": "ptdate",
+            "data_type": "DATE",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          },
+          {
+            "column_name": "name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "名称"
+          },
+          {
+            "column_name": "control_reason",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "新能源控制原因"
+          },
+          {
+            "column_name": "max_penetration_rate",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "新能源最大渗透率(%)，统计周期内新能源出力占同时刻总负荷的最大比例，反映新能源接入电网的瞬时最高占比。"
+          },
+          {
+            "column_name": "max_active_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "新能源最大出力(MW)，统计周期内新能源（按电站或类型口径）出力的最大瞬时值。"
+          },
+          {
+            "column_name": "controlled_max_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "新能源控制最大电力(MW)，因调度需要而被限制的最大新能源出力（弃风/弃光的功率值）。"
+          },
+          {
+            "column_name": "controlled_energy",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "新能源控制电量(MWh)，因调度限电导致新能源少发的累计电量，即弃风弃光电量。"
+          }
+        ]
+      },
+      {
+        "table_name": "new_realTime_measurement",
+        "description": "实时量测",
+        "columns": [
+          {
+            "column_name": "id",
+            "data_type": "INT",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自增主键"
+          },
+          {
+            "column_name": "ptdate",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          },
+          {
+            "column_name": "point_name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "测点名"
+          },
+          {
+            "column_name": "region_name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "地区名"
+          },
+          {
+            "column_name": "point_id",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "测点ID"
+          },
+          {
+            "column_name": "value",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "电厂测点的实时测量数值，具体物理含义由 point_name 决定（电压单位 kV、电流单位 A、频率单位 Hz、功率单位 MW、出力单位 MW）。"
+          }
+        ]
+      },
+      {
+        "table_name": "new_energy_info_fill",
+        "description": "新能源信息填报",
+        "columns": [
+          {
+            "column_name": "id",
+            "data_type": "INT",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自增主键"
+          },
+          {
+            "column_name": "region_name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "地区名"
+          },
+          {
+            "column_name": "ptdate",
+            "data_type": "DATE",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          },
+          {
+            "column_name": "gen_type",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "发电类型"
+          },
+          {
+            "column_name": "obj_dispIdx",
+            "data_type": "VARCHAR",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "OBJ_DISPIDX"
+          },
+          {
+            "column_name": "installed_capacity",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "装机容量(MW)，新能源电站或某类电源的已并网/核准装机容量。"
+          },
+          {
+            "column_name": "generation",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "发电量(MWh)"
+          },
+          {
+            "column_name": "max_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "最大出力(MW)"
+          },
+          {
+            "column_name": "min_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "最小出力(MW)"
+          },
+          {
+            "column_name": "max_limited_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "最大受限出力(MW)"
+          },
+          {
+            "column_name": "limited_energy",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "受限电量(MWh)"
+          },
+          {
+            "column_name": "utilization_hours",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "利用小时数(h)"
+          },
+          {
+            "column_name": "actual_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "实际出力(MW)"
+          },
+          {
+            "column_name": "total_td_gen",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "新能源专项填报口径下统调发电量合计，仅统计风能、集中式光伏、统调光伏、总分布式光伏、总光伏、生物质这几类新能源。与 new_power_gen_rec 表中的同名字段（按地区聚合的全电源合计）含义不同。"
+          }
+        ]
+      },
+      {
+        "table_name": "power_transfer_receive",
+        "description": "送受电量",
+        "columns": [
+          {
+            "column_name": "ptdate",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          },
+          {
+            "column_name": "power_flow_direction",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "送受电方向"
+          },
+          {
+            "column_name": "planned_max_active_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "计划值_最大有功功率（MW）"
+          },
+          {
+            "column_name": "actual_max_active_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "实际值_最大有功功率（MW）"
+          },
+          {
+            "column_name": "planned_power_t723",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "7-23点计划电量（MWh）"
+          },
+          {
+            "column_name": "planned_power_t237",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "23-7点计划电量（MWh）"
+          },
+          {
+            "column_name": "planned_power_daily",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "全天计划电量（MWh）"
+          },
+          {
+            "column_name": "actual_power_t723",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "7-23点实际电量（MWh）"
+          },
+          {
+            "column_name": "actual_power_t237",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "23-7点实际电量（MWh）"
+          },
+          {
+            "column_name": "actual_power_daily",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "全天实际电量（MWh）"
+          }
+        ]
+      },
+      {
+        "table_name": "load_and_reserve",
+        "description": "负荷与备用",
+        "columns": [
+          {
+            "column_name": "ptdate",
+            "data_type": "DATE",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          },
+          {
+            "column_name": "min_time_local",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "最低时间_地调"
+          },
+          {
+            "column_name": "max_time_local",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "最高时间_地调"
+          },
+          {
+            "column_name": "region_name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "地区名"
+          },
+          {
+            "column_name": "min_time_unified",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "最低时间_统调"
+          },
+          {
+            "column_name": "max_time_unified",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "最高时间_统调"
+          },
+          {
+            "column_name": "min_time_central",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "最低时间_中调"
+          },
+          {
+            "column_name": "max_time_central",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "最高时间_中调"
+          },
+          {
+            "column_name": "peak_valley_diff_local",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "地调（地区调度）口径下日内最高负荷与最低负荷之差（MW），反映地区电网负荷波动幅度。区别于 peak_valley_diff_unified（统调口径，省级）和 peak_valley_diff_central（中调口径）。"
+          },
+          {
+            "column_name": "load_rate_local",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "地调口径负荷率，等于地调平均负荷 / 地调最高负荷，反映地调负荷曲线平坦程度。"
+          },
+          {
+            "column_name": "avg_load_local",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "地调口径下当日平均负荷（MW），仅统计地区调度直调部分。"
+          },
+          {
+            "column_name": "min_load_local",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "地调口径下当日最低负荷（MW），仅统计地区调度直调部分。"
+          },
+          {
+            "column_name": "max_load_local",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "地调口径下当日最高负荷（MW），仅统计地区调度直调部分。"
+          },
+          {
+            "column_name": "peak_valley_diff_unified",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调（统一调度）口径下日内最高负荷与最低负荷之差（MW），反映省级统调电网负荷波动幅度，是调峰能力评估的关键指标。"
+          },
+          {
+            "column_name": "load_rate_unified",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径负荷率，等于统调平均负荷 / 统调最高负荷，反映省级统调负荷平稳程度。与 power_grid_section 表的 load_rate（断面负载率）不是同一概念。"
+          },
+          {
+            "column_name": "restored_max_load_unified",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下还原后最高负荷（MW），即把分布式光伏自发自用部分还原计入后的统调最高负荷，更接近真实最大用电需求。"
+          },
+          {
+            "column_name": "avg_load_unified_with_pv",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "含分布式光伏的统调口径下日平均负荷（MW），即在统调负荷基础上加回分布式光伏自发自用电量，用于真实负荷分析。"
+          },
+          {
+            "column_name": "min_load_unified_with_pv",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "含分布式光伏的统调口径下日最低负荷（MW），即在统调负荷基础上加回分布式光伏自发自用电量，用于真实负荷分析。"
+          },
+          {
+            "column_name": "max_load_unified_with_pv",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "含分布式光伏的统调口径下日最高负荷（MW），即在统调负荷基础上加回分布式光伏自发自用电量，用于真实负荷分析。"
+          },
+          {
+            "column_name": "avg_load_unified",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下当日平均负荷（MW），是省级电力供需平衡的核心指标。"
+          },
+          {
+            "column_name": "min_load_unified",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下当日最低负荷（MW），是省级电力供需平衡的核心指标。"
+          },
+          {
+            "column_name": "max_load_unified",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "统调口径下当日最高负荷（MW），是省级电力供需平衡的核心指标。"
+          },
+          {
+            "column_name": "peak_valley_diff_central",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调（中级调度，省调中心调度）口径下日内最高负荷与最低负荷之差（MW），反映中调直调机组所对应的负荷波动。"
+          },
+          {
+            "column_name": "load_factor_central",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径负荷率，等于中调平均负荷 / 中调最高负荷。"
+          },
+          {
+            "column_name": "avg_load_central",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下当日平均负荷（MW），仅统计中调直调机组对应负荷。"
+          },
+          {
+            "column_name": "min_load_central",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下当日最低负荷（MW），仅统计中调直调机组对应负荷。"
+          },
+          {
+            "column_name": "max_load_central",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "中调口径下当日最高负荷（MW），仅统计中调直调机组对应负荷。"
+          }
+        ]
+      },
+      {
+        "table_name": "power_grid_section",
+        "description": "断面表",
+        "columns": [
+          {
+            "column_name": "object_timestamp",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "对象时标"
+          },
+          {
+            "column_name": "section_name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "断面名"
+          },
+          {
+            "column_name": "limit_status",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "越限状态"
+          },
+          {
+            "column_name": "object_id",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "对象编号"
+          },
+          {
+            "column_name": "calculation_result",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面实时计算潮流值（MW），由 SCADA/EMS 实时计算得出。"
+          },
+          {
+            "column_name": "limit_value",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面物理限制值（MW），断面所允许的理论极限输送功率。"
+          },
+          {
+            "column_name": "control_value",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面安全控制值（MW），运行控制层面设定的安全预警值，通常小于 limit_value。"
+          },
+          {
+            "column_name": "min_value",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面反向输送时的最小允许值（MW），反向越限判定依据。"
+          },
+          {
+            "column_name": "load_rate",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面负载率，等于断面实时计算结果 / 断面限制值，反映该输电断面/通道的承压程度。注意：与 load_and_reserve 表的负荷率（avg/max 负荷比）含义完全不同。"
+          },
+          {
+            "column_name": "margin",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面安全裕度（MW）= 控制值 - 实时值，反映距离安全控制值的余量。"
+          },
+          {
+            "column_name": "exceed_control",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面越控制值的越限量（MW），值大于 0 表示已越限。"
+          },
+          {
+            "column_name": "exceed_limit",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面越极限值的越限量（MW），值大于 0 表示已越限。"
+          },
+          {
+            "column_name": "exceed_min",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面越最小值的越限量（MW），值大于 0 表示已越限。"
+          },
+          {
+            "column_name": "real_time_value",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "断面实时测量值（MW，不经过计算），来自 SCADA 直采。"
+          },
+          {
+            "column_name": "ptdate",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          }
+        ]
+      },
+      {
+        "table_name": "trip_info",
+        "description": "跳闸情况",
+        "columns": [
+          {
+            "column_name": "record_no",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "记录号"
+          },
+          {
+            "column_name": "dispatch_org",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "调管机构"
+          },
+          {
+            "column_name": "city_belong",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "所属地市"
+          },
+          {
+            "column_name": "substation",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "变电站"
+          },
+          {
+            "column_name": "voltage_level",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "电压等级"
+          },
+          {
+            "column_name": "power_outage_type",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "停电类型"
+          },
+          {
+            "column_name": "fault_maintain_unit",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "故障所属维护单位"
+          },
+          {
+            "column_name": "line_code",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "线路编码"
+          },
+          {
+            "column_name": "line_name",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "线路名称"
+          },
+          {
+            "column_name": "fault_phase",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "故障相别"
+          },
+          {
+            "column_name": "fault_type",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "故障类型"
+          },
+          {
+            "column_name": "outage_time",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "停电时间"
+          },
+          {
+            "column_name": "restore_time",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "复电时间"
+          },
+          {
+            "column_name": "recloser_action",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "重合闸动作情况"
+          },
+          {
+            "column_name": "county_district",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "所属县区"
+          },
+          {
+            "column_name": "busbar",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "所属母线"
+          },
+          {
+            "column_name": "outage_reason",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "停电原因"
+          },
+          {
+            "column_name": "power_delivery_status",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "送电情况"
+          },
+          {
+            "column_name": "power_restore_status",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "用电恢复情况"
+          },
+          {
+            "column_name": "recorder",
+            "data_type": "VARCHAR",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "记录人（可为空）"
+          },
+          {
+            "column_name": "record_time",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "记录时间"
+          },
+          {
+            "column_name": "restored_users",
+            "data_type": "INT",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "复电用户数（可为空）"
+          },
+          {
+            "column_name": "affected_users",
+            "data_type": "INT",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "停电影响用户数（可为空）"
+          },
+          {
+            "column_name": "lost_load",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "损失负荷(MW)（可为空）"
+          },
+          {
+            "column_name": "restored_load",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "已恢复负荷(MW)（可为空）"
+          },
+          {
+            "column_name": "lost_power",
+            "data_type": "DECIMAL",
+            "is_dimension": 0,
+            "is_measure": 1,
+            "description": "损失电量(万kWh)（固定为空）"
+          },
+          {
+            "column_name": "ptdate",
+            "data_type": "DATETIME",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "日期"
+          },
+          {
+            "column_name": "month",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "月份"
+          },
+          {
+            "column_name": "quarter",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "季度"
+          },
+          {
+            "column_name": "weekofyear",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "自然周"
+          },
+          {
+            "column_name": "year",
+            "data_type": "",
+            "is_dimension": 1,
+            "is_measure": 0,
+            "description": "年度"
+          }
+        ]
+      }
+    ],
+    "business_context": [
+      {
+        "aiBodyId": 95,
+        "id": 16298,
+        "knowledgeAlias": [
+          "跳闸次数"
+        ],
+        "knowledgeElement": "跳闸次数是指\"停电类型\"=跳闸的记录数"
+      },
+      {
+        "aiBodyId": 95,
+        "id": 16299,
+        "knowledgeAlias": [
+          "新能源发电量"
+        ],
+        "knowledgeElement": "新能源发电量包含：风能，集中式光伏，统调光伏，总分布光伏，总光伏"
+      },
+      {
+        "aiBodyId": 95,
+        "id": 16300,
+        "knowledgeAlias": [
+          "电站"
+        ],
+        "knowledgeElement": "名称是电站名称，问电站必须返回名称"
+      },
+      {
+        "aiBodyId": 95,
+        "id": 16301,
+        "knowledgeAlias": [
+          "南方五省"
+        ],
+        "knowledgeElement": "南方五省是指广东、广西、云南、贵州、海南"
+      },
+      {
+        "aiBodyId": 95,
+        "id": 16302,
+        "knowledgeAlias": [
+          "全网"
+        ],
+        "knowledgeElement": "全网是指广东、广西、云南、贵州、海南"
+      },
+      {
+        "aiBodyId": 95,
+        "id": 16303,
+        "knowledgeAlias": [
+          "跳闸重合成功次数",
+          "跳闸重合成功"
+        ],
+        "knowledgeElement": "跳闸重合成功次数是指\"停电类型\"=跳闸重合成功的记录数"
+      },
+      {
+        "aiBodyId": 95,
+        "id": 16304,
+        "knowledgeAlias": [
+          "停电时长"
+        ],
+        "knowledgeElement": "停电时长=复电时间-停电时间"
+      },
+      {
+        "aiBodyId": 95,
+        "id": 16305,
+        "knowledgeAlias": [
+          "停电次数"
+        ],
+        "knowledgeElement": "停电次数有两种等价计算口径：（1）对各个变故障所属维护单位的停电时间不为空的数据进行计数；（2）统计\"停电类型\"为跳闸或主动停运的记录数"
+      }
+    ]
+  },
+  "business_context": [
+    {
+      "knowledgeAlias": [
+        "跳闸次数"
+      ],
+      "knowledgeElement": "跳闸次数：trip_info 表中 power_outage_type='跳闸' 的记录数。"
+    },
+    {
+      "knowledgeAlias": [
+        "新能源发电量"
+      ],
+      "knowledgeElement": "新能源发电量：包括风能、集中式光伏、统调光伏、总分布式光伏、总光伏、生物质等所有新能源发电类型的发电量之和。"
+    },
+    {
+      "knowledgeAlias": [
+        "电站"
+      ],
+      "knowledgeElement": "电站：从 new_energy_daily_status / new_energy_info_fill 等表的 name 字段返回，必须返回电站名称。"
+    },
+    {
+      "knowledgeAlias": [
+        "南方五省"
+      ],
+      "knowledgeElement": "南方五省：广东、广西、云南、贵州、海南五个省份。"
+    },
+    {
+      "knowledgeAlias": [
+        "全网"
+      ],
+      "knowledgeElement": "全网：南方五省（广东、广西、云南、贵州、海南）全部，等价于查询所有省级地区。"
+    },
+    {
+      "knowledgeAlias": [
+        "跳闸重合成功次数",
+        "跳闸重合成功"
+      ],
+      "knowledgeElement": "跳闸重合成功次数：trip_info 表中 power_outage_type='跳闸重合成功' 的记录数。"
+    },
+    {
+      "knowledgeAlias": [
+        "停电时长"
+      ],
+      "knowledgeElement": "停电时长：复电时间（restore_time）减去停电时间（outage_time）。"
+    },
+    {
+      "knowledgeAlias": [
+        "停电次数"
+      ],
+      "knowledgeElement": "停电次数：① 按 fault_maintain_unit 分组统计 outage_time 非空记录数；② 或 power_outage_type 为'跳闸'或'主动停运'的记录数。"
+    }
+  ]
+}
